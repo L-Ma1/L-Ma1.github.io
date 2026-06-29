@@ -1,0 +1,12 @@
+<DOCTYPE! html>
+const steps - [
+{
+  title: "Happy 6 Months",
+  message:
+    "Today marks",
+  imageUrl:,
+  subtext: "Swipe through the heart",
+}
+{
+  title: "Memories",
+  message
