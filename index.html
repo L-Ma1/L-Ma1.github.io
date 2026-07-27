@@ -1,191 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title> 6 Months with Bae ❤️</title>
-  <meta name="viewpoint" content= "width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <title>6 Months with Bae ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    :root{
+      --bg: #aad2ba;
+      --heart-pink: #ff9fc0;
+      --button-bg: #6b8f71;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+    }
+
     body{
-      background: #aad2ba;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
-      height: 100vh;
+      background: var(--bg);
+      font-family: Arial, sans-serif;
       display:flex;
-      justify-content: center;
-      aligh-items: center;
-      flex-direction: column;
-      position: relative;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      overflow:hidden;
+      position:relative;
     }
 
     #content {
       display:flex;
-      flex-display:column;
+      flex-direction:column;
       align-items:center;
       text-align:center;
       z-index:5;
+      padding:20px;
     }
+
     .question {
-      font-size: 2.5rem;
-      color:black;
-      opacity: 0;
-      transform:scale(0.8);
-      animation: showQuestion 2s forward;
-      padding: 20px;
-      max-width: 90%;
+      font-size:2rem;
+      color:#000;
+      opacity:0;
+      transform:scale(0.9);
+      animation: showQuestion 0.6s forwards;
+      padding:20px;
+      max-width:90%;
+      line-height:1.3;
     }
+
     @keyframes showQuestion {
       to {
-        opacity: 1;
-        transform: scale(1);
+        opacity:1;
+        transform:scale(1);
       }
     }
+
     .heart {
       width:20px;
       height:20px;
-      background-color: pink;
-      postion: absolute;
-      top: 100%;
-      transform: rotate (-45deg);
-      animation: floatUp 8s linear infinite;
-      opacity: 0;
-      z-index: 0;
-    }
-    .heart: :before,
-    .heart: :after {
-      content: "";
-      width: 20px;
-      height: 20px
-      background-color: pink;
-      border-radius: 50%;
+      background-color: var(--heart-pink);
       position:absolute;
+      transform:rotate(-45deg);
+      animation: floatUp linear infinite;
+      opacity:0;
+      z-index:0;
+      border-radius:3px;
     }
-    .heart: :before{
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width:20px;
+      height:20px;
+      background-color: var(--heart-pink);
+      border-radius:50%;
+      position:absolute;
+      left:0;
+    }
+
+    .heart::before{
       top:-10px;
-      left:0;
     }
-    .heart : :after{
-      top:10px;
-      left:0;
+
+    .heart::after{
+      left:10px;
+      top:0;
     }
+
     @keyframes floatUp{
       0% {
-        top:100%;
-        opacity: 0;
-        transform: translateX(0) translateY(0) rotate(-45deg) scale(0.5);
-      }
-      10% {
-      opacity: 1;
-      }
-      100% {
-        top:-10%;
-        transform: translateX(0) translateY(-100vh) rotate(360deg) scale(1.2);
+        transform: translateY(0) rotate(-45deg) scale(0.6);
         opacity:0;
       }
-      .final {
-      font-size: 3rem;
-      color: black;
-      text-shadow: 2px 2px 8px pink;
-      opacity: 0;
-      transform: scale(0);
-      animation: finalReveal 2s forwards;
-      animation-delay:2s;
-      text-align: center;
+      10% {
+        opacity:1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg) scale(1.2);
+        opacity:0;
+      }
+    }
+
+    .final {
+      font-size:2.2rem;
+      color:#000;
+      text-shadow:2px 2px 8px rgba(255,159,192,0.6);
+      opacity:0;
+      transform:scale(0);
+      animation: finalReveal 0.6s forwards;
+      animation-delay:0.2s;
+      text-align:center;
+      margin-top:10px;
     }
 
     @keyframes finalReveal {
-      0% {
-        opacity: 0;
-        transform: scale(0);
+      to {
+        opacity:1;
+        transform:scale(1);
       }
-      100% { 
-        opacity: 1;
-        transform: scale(1);
-      }
-      .sticker{
+    }
+
+    .sticker{
       width:150px;
-      height: 150px;
-      margin-top: 20px;
-      animation: popSticker 1s ease forwards;
+      height:150px;
+      margin-top:20px;
+      animation: popSticker 0.4s ease forwards;
       opacity:0;
       object-fit:contain;
     }
+
     @keyframes popSticker {
       to {
-        opacity: 1;
-        transform: scale(1.1);
+        opacity:1;
+        transform:scale(1.05);
       }
     }
-    .hidden {diplay:none;}
+
+    .hidden { display:none; }
+
     button {
-      margin-top: 30px;
-      padding:10px 30px;
-      background: 6b8f71;
-      border: none;
-      border-radius: 30px;
-      color: black;
-      font-size: 1.2rem;
+      margin-top:20px;
+      padding:10px 28px;
+      background: var(--button-bg);
+      border:none;
+      border-radius:30px;
+      color:#000;
+      font-size:1.05rem;
       cursor:pointer;
-      box-shawdow: 2px 2px 20px 485f4c;
-      transition:transform 0.3s; 
+      transition: transform 0.2s ease;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.12);
     }
-    button:hover {
-      transform: scale(1.1);
-    } 
+
+    button:hover { transform:scale(1.05); }
   </style>
 </head>
 <body>
   <div id="content">
     <div class="question" id="question"></div>
-    <img src="" class="sticker hidden" id="sticker" />
-    <div class="final hidden" id= "final"> I love you the most in the world </div>
-    <button id="nextBtn"> Next </button>
+    <img src="" class="sticker hidden" id="sticker" alt="sticker" />
+    <div class="final hidden" id="final">I love you the most in the world</div>
+    <button id="nextBtn">Next</button>
   </div>
+
   <script>
-    const questions= [
+    const questions = [
       "Happy 6 months babe! I hope you enjoy my hard work and my dedication to you because I love you so much!",
-      "Blank 1",
-      "blank 2",
-      "blank 3",
-      "blank 4"
-      ];
-    const stickers= [
-      "/3.png",
-      "/3.png",
-      "/3.png",
-      "/3.png",
-      "/3.png"
-      ];
-    let step= 0;
-    const questionE1= document.getElementById('question');
-    const stickerE1= document.getElementById('sticker');
-    const finalE1= document.getElementById('final');
-    const nextBtn= document.getElementById('nextBtn');
+      "You make every day brighter and sweeter.",
+      "Thank you for your patience, your laugh, and your hugs.",
+      "I love the little things we share and the big dreams we have.",
+      "Here is to many more months and memories together."
+    ];
+
+    const stickers = [
+      "3.png",
+      "3.png",
+      "3.png",
+      "3.png",
+      "3.png"
+    ];
+
+    let step = 0;
+    const questionEl = document.getElementById('question');
+    const stickerEl = document.getElementById('sticker');
+    const finalEl = document.getElementById('final');
+    const nextBtn = document.getElementById('nextBtn');
 
     function showStep() {
-      if (step <question.length) {
-        questionE1.textContent=questions[step];
-        stickerE1.src= sticker[steps];
-        stickerE1.classList.remove('hidden');
-      } else{
-        questionE1.classList.add('hidden');
-        stickerE1.classList.add('hidden');
-        finalE1.classList.remove('hidden');
+      // show next question or final message
+      if (step < questions.length) {
+        // update text
+        questionEl.textContent = questions[step];
+        questionEl.classList.remove('hidden');
+        // show sticker if available
+        const src = stickers[step];
+        if (src) {
+          stickerEl.src = src;
+          stickerEl.classList.remove('hidden');
+        } else {
+          stickerEl.classList.add('hidden');
+        }
+      } else {
+        // final state
+        questionEl.classList.add('hidden');
+        stickerEl.classList.add('hidden');
+        finalEl.classList.remove('hidden');
         nextBtn.style.display = 'none';
-          }
+      }
       step++;
     }
+
     nextBtn.addEventListener('click', showStep);
+    // show first step immediately
     showStep();
-    
-    for (let i=0, i<30, i++){
-      const heart= document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left= Math.random() *100 +'vw';
-      heart.style.animationDuration = (5+ Math.random()*5) +'s';
-      heart.style.animationDelay= (Math.random() *5) + 's';
+
+    // create floating hearts
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      // random horizontal position
+      heart.style.left = Math.random() * 100 + 'vw';
+      // random animation duration and delay
+      heart.style.animationDuration = (5 + Math.random() * 6) + 's';
+      heart.style.animationDelay = (Math.random() * 5) + 's';
+      // random size
+      const size = 10 + Math.random() * 30;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+      heart.style.borderRadius = Math.max(2, size * 0.15) + 'px';
+      heart.style.opacity = 0;
       document.body.appendChild(heart);
     }
   </script>
-    
 </body>
 </html>
