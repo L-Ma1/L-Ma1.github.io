@@ -1,12 +1,10 @@
-<DOCTYPE! html>
-const steps - [
-{
-  title: "Happy 6 Months",
-  message:
-    "Today marks",
-  imageUrl:,
-  subtext: "Swipe through the heart",
-}
-{
-  title: "Memories",
-  message
+<!DOCTYPE html>
+<html>
+<head>
+  <title> My First Website </title>
+</head>
+<body>
+  <h1> Hello, World <//h1>
+  <p> Welcome to my website hosted on Github. </p>
+</body>
+</html>
