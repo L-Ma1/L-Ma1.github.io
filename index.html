@@ -264,6 +264,36 @@
     nextBtn.addEventListener('click', showStep);
     // show first step immediately
     showStep();
+// JS: create a few random bubbles around the sticker when it becomes visible
+function addBubblyBorder(wrapperId, count = 8) {
+  const wrap = document.getElementById(wrapperId);
+  if (!wrap) return;
+  // remove old bubbles
+  wrap.querySelectorAll('.bubble').forEach(b => b.remove());
+
+  const rect = wrap.getBoundingClientRect();
+  for (let i = 0; i < count; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    // random size
+    const size = 6 + Math.random() * 28;
+    b.style.width = size + 'px';
+    b.style.height = size + 'px';
+    // random position around the edges (allow some outside overflow)
+    const angle = Math.random() * Math.PI * 2;
+    const radius = (Math.max(rect.width, rect.height) / 2) + (6 + Math.random() * 18);
+    const cx = rect.width / 2 + Math.cos(angle) * radius;
+    const cy = rect.height / 2 + Math.sin(angle) * radius;
+    b.style.left = (cx - size / 2) + 'px';
+    b.style.top = (cy - size / 2) + 'px';
+    // stagger animation slightly
+    b.style.animationDelay = (Math.random() * 0.35) + 's';
+    b.style.opacity = 0;
+    wrap.appendChild(b);
+    // remove after animation to keep DOM clean
+    setTimeout(() => b.remove(), 2200);
+  }
+}
 
     // create floating hearts
     for (let i = 0; i < 30; i++) {
