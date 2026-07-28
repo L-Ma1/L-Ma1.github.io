@@ -128,7 +128,12 @@
       opacity:0;
       object-fit:contain;
     }
-
+    
+    .rounded { 
+      border: 5px solid white;
+      border-radius: 15px;
+      }
+    
     @keyframes popSticker {
       to {
         opacity:1;
@@ -184,6 +189,7 @@
     const stickerEl = document.getElementById('sticker');
     const finalEl = document.getElementById('final');
     const nextBtn = document.getElementById('nextBtn');
+    const border= document.getElementById('rounded');
 
     function showStep() {
       // show next question or final message
@@ -192,18 +198,22 @@
         questionEl.textContent = questions[step];
         questionEl.classList.remove('hidden');
         // show sticker if available
-        const src = stickers[step];
+        const src = stickers[step] and rounded[step];
         if (src) {
           stickerEl.src = src;
+          border.src=src;
           stickerEl.classList.remove('hidden');
+          border.classList.remove('hidden');
         } else {
           stickerEl.classList.add('hidden');
+          border.classList.add('hidden');
         }
       } else {
         // final state
         questionEl.classList.add('hidden');
         stickerEl.classList.add('hidden');
         finalEl.classList.remove('hidden');
+        border.classList.remove('hidden');
         nextBtn.style.display = 'none';
       }
       step++;
