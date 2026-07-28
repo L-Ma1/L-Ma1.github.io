@@ -128,12 +128,7 @@
       opacity:0;
       object-fit:contain;
     }
-    
-    .rounded { 
-      border: 5px solid white;
-      border-radius: 15px;
-      }
-    
+
     @keyframes popSticker {
       to {
         opacity:1;
@@ -157,9 +152,55 @@
     }
 
     button:hover { transform:scale(1.05); }
+
+    /* ❤️ HEART EXPLOSION */
+    .explosion-heart {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: var(--heart-pink);
+      transform: rotate(-45deg);
+      animation: explode 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .explosion-heart::before,
+    .explosion-heart::after {
+      content: "";
+      width: 25px;
+      height: 25px;
+      background: var(--heart-pink);
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .explosion-heart::before {
+      top: -12px;
+      left: 0;
+    }
+
+    .explosion-heart::after {
+      left: 12px;
+      top: 0;
+    }
+
+    @keyframes explode {
+      0% {
+        opacity: 1;
+        transform: scale(0.5) translate(0,0) rotate(-45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.5) translate(var(--x), var(--y)) rotate(360deg);
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ❤️ MUSIC -->
+  <audio id="bgMusic" src="music.mp3" autoplay loop></audio>
+
   <div id="content">
     <div class="question" id="question"></div>
     <img src="" class="sticker hidden" id="sticker" alt="sticker" />
@@ -171,7 +212,7 @@
     const questions = [
       "Happy 6 months babe! I hope you enjoy my hard work and my dedication to you because I love you so much!",
       "I am so thankful to have you on by side every morning to every night. Seeing you brighten my day and you truly bring the best out of me.",
-      "To the rough patches to easy mornings, no matter what we go through, how we go through them, or when they have happen, you will always be my world and go through them together. ",
+      "To the rough patches to easy mornings, no matter what we go through, how we go through them, or when they have happen, you will always be my world and go through them together.",
       "You are the best boyfriend anyone can ever ask for and I am so lucky to call you mine. I can't wait to see what else the future holds for us.",
       "Here is to many more months and memories together."
     ];
@@ -189,50 +230,63 @@
     const stickerEl = document.getElementById('sticker');
     const finalEl = document.getElementById('final');
     const nextBtn = document.getElementById('nextBtn');
-    const border= document.getElementById('rounded');
+
+    function explodeHearts() {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'explosion-heart';
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 150 + Math.random() * 150;
+
+        heart.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+        heart.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1200);
+      }
+    }
 
     function showStep() {
-      // show next question or final message
       if (step < questions.length) {
-        // update text
         questionEl.textContent = questions[step];
         questionEl.classList.remove('hidden');
-        // show sticker if available
-        const src = stickers[step] and rounded[step];
+
+        const src = stickers[step];
+
         if (src) {
           stickerEl.src = src;
-          border.src=src;
           stickerEl.classList.remove('hidden');
-          border.classList.remove('hidden');
         } else {
           stickerEl.classList.add('hidden');
-          border.classList.add('hidden');
         }
+
       } else {
-        // final state
         questionEl.classList.add('hidden');
         stickerEl.classList.add('hidden');
         finalEl.classList.remove('hidden');
-        border.classList.remove('hidden');
         nextBtn.style.display = 'none';
+
+        explodeHearts(); // ❤️ EXPLOSION
       }
+
       step++;
     }
 
     nextBtn.addEventListener('click', showStep);
-    // show first step immediately
     showStep();
 
-    // create floating hearts
+    // floating hearts
     for (let i = 0; i < 30; i++) {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      // random horizontal position
       heart.style.left = Math.random() * 100 + 'vw';
-      // random animation duration and delay
       heart.style.animationDuration = (5 + Math.random() * 6) + 's';
       heart.style.animationDelay = (Math.random() * 5) + 's';
-      // random size
       const size = 10 + Math.random() * 30;
       heart.style.width = size + 'px';
       heart.style.height = size + 'px';
