@@ -202,7 +202,8 @@
 <body>
 
   <!-- ❤️ MUSIC -->
-  <audio id="bgMusic" src="keshi - UNDERSTAND (Visualizer) 4.mp3" loop autoplay ></audio>
+  <audio id="bgMusic" src="music.mp3" loop muted autoplay></audio>
+
 
   <div id="content">
     <div class="question" id="question"></div>
@@ -297,6 +298,11 @@
       heart.style.opacity = 0;
       document.body.appendChild(heart);
     }
+    nextBtn.addEventListener("click", () => {
+  bgMusic.muted = false;
+  bgMusic.play();
+});
+
   </script>
 </body>
 </html>
