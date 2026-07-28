@@ -202,7 +202,7 @@
 <body>
 
   <!-- ❤️ MUSIC -->
-  <audio id="bgMusic" src="music.mp3" loop muted autoplay></audio>
+  <audio id="bgMusic" src="music.mp3" loop></audio>
 
 
   <div id="content">
@@ -298,10 +298,11 @@
       heart.style.opacity = 0;
       document.body.appendChild(heart);
     }
-    nextBtn.addEventListener("click", () => {
-  bgMusic.muted = false;
-  bgMusic.play();
-});
+    //music start hopefully
+    const bgMusic = document.getElementById("bgMusic");
+  nextBtn.addEventListener("click", () => {
+    bgMusic.play().catch(() => {});
+  });
 
   </script>
 </body>
